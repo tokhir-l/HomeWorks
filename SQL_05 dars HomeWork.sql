@@ -59,5 +59,20 @@ HAVING count(EmpName) > 1;
 
 -- Task 3: 
 -- write a query to identify a number is perfect or not ( you can research about perfect number)
+DECLARE @Number INT = 6;  
+DECLARE @Sum INT = 0;
+DECLARE @i INT = 1;
 
-???????
+WHILE @i < @Number
+BEGIN
+    IF @Number % @i = 0 
+        SET @Sum = @Sum + @i;
+        SET @i = @i + 1;
+END
+
+SELECT @Number AS Number, 
+       @Sum AS SumOfDivisors, 
+       CASE 
+           WHEN @Sum = @Number THEN 'Perfect Number'
+           ELSE 'Not a Perfect Number'
+       END AS Result;
