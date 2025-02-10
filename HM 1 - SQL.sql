@@ -162,3 +162,101 @@ SELECT year, subject, winner, country FROM nobel_win
 WHERE winner = 'Chemistry' AND year >= 1965 and year <= 1975;
 
 -- 17. Prime Ministers After 1972
+-- Solution 1. 
+SELECT * FROM nobel_win
+WHERE category = 'Prime Minister';
+
+-- Solution 2.
+SELECT * FROM nobel_win
+WHERE year > 1972 and winner in ('Menachem Begin', 'Yitzhak Rabin')
+
+-- 18. Winners with First Name Louis
+--Solution
+SELECT year, subject, winner, country, category FROM nobel_win
+WHERE winner LIKE 'Louis%';
+
+
+-- 19. Combine Winners (Physics 1970 & Economics 1971)
+-- Solution 
+SELECT year, subject, winner, country, category FROM nobel_win
+WHERE year = 1970 and subject = 'Physics'
+UNION 
+SELECT year, subject, winner, country, category FROM nobel_win
+WHERE year = 1971 and subject = 'Economics'
+
+-- 20. 1970 Winners Excluding Physiology & Economics
+-- Solution
+SELECT year, subject, winner, country, category FROM nobel_win
+WHERE year = 1970 and subject not in ('Physiology','Economics')
+
+-- 21. Physiology Before 1971 & Peace After 1974
+-- Solution
+SELECT year, subject, winner, country, category FROM nobel_win
+WHERE subject = 'Physiology' and year<1971
+UNION 
+SELECT year, subject, winner, country, category FROM nobel_win
+WHERE subject = 'Peace' and year >= 1974
+
+-- 22. Details of Johannes Georg Bednorz
+-- Solution
+SELECT year, subject, winner, country, category FROM nobel_win
+WHERE winner =  'Johannes Georg Bednorz'
+
+-- 23. Winners Excluding Subjects Starting with P
+-- Solution
+SELECT year, subject, winner, country, category FROM nobel_win
+WHERE subject not like 'P%'
+ORDER BY year desc, winner asc;
+
+-- 24. Ordered 1970 Nobel Prize Winners
+-- Solution 
+SELECT year, subject, winner, country, category FROM nobel_win
+where year = 1970 
+order by 
+CASE when subject in ('Chemistry', 'Economics') then 1
+else 0
+end asc,
+subject, winner;
+
+-- 25. Products in Price Range Rs.200-600
+-- Solution
+SELECT pro_id, pro_name, pro_price, pro_com FROM item_mast
+WHERE pro_price between 200 and 600;
+
+-- 26. Average Price for Manufacturer Code 16
+-- Solution
+SELECT AVG(pro_price) as avg FROM item_mast
+where pro_com = 16
+
+-- 27. Display Item Name and Price
+-- Solution
+SELECT pro_name as 'Item Name', pro_price as 'Price in Rs.' from item_mast
+
+
+-- 28. Items with Price >= $250
+-- Solution
+SELECT pro_name, pro_price FROM item_mast
+WHERE pro_price >= 250
+order by pro_price desc, pro_name asc;
+
+-- 29. Average Price per Company
+SELECT AVG(pro_price), pro_com FROM item_mast
+Group by pro_com
+
+-- 30. Cheapest Item
+SELECT pro_name, pro_price FROM item_mast
+WHERE pro_price = (SELECT MIN(pro_price) FROM item_mast)
+
+-- 31. Unique Employee Last Names
+SELECT distinct emp_lname from emp_details
+
+-- 32. Employees with Last Name Snares
+SELECT emp_idno, emp_fname, emp_lname, emp_dept from emp_details
+where emp_lname = 'Snares'
+
+-- 33. Employees in Department 57
+SELECT emp_idno, emp_fname, emp_lname, emp_dept from emp_details
+where emp_dept =57
+
+
+done :)
