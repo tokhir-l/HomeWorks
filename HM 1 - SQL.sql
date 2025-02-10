@@ -1,3 +1,7 @@
+-- HomeWork 1:  https://www.w3resource.com/sql-exercises/sql-retrieve-from-table.php
+
+
+
 CREATE TABLE salesman (
     salesman_id INT PRIMARY KEY,
     name NVARCHAR(50),
