@@ -66,3 +66,79 @@ WHERE name LIKE 'B%'
 select salesman_id, name, city, commission from salesman
 where name not between 'A' and 'M'
 
+-- Customers with Names Starting with B
+select customer_id, cust_name, city, grade, salesman_id from customer
+where cust_name like 'B%'
+
+
+--10. Customers with Names Ending with N
+select customer_id, cust_name, city, grade, salesman_id from customer
+where cust_name like '%n'
+
+
+--11. Salespeople Name Starts 'N' with Fourth 'L'
+select salesman_id, name, city, commission from salesman
+where name like 'N%' and name like '___l%'
+
+--12. Rows with Underscore Character
+--CREATE TABLE testtable (
+--    col1 VARCHAR(255)
+--);
+
+--INSERT INTO testtable (col1) VALUES
+--('A001/DJ-402\\44_/100/2015'),
+--('A001_\\DJ-402\\44_/100/2015'),
+--('A001_DJ-402-2014-2015'),
+--('A002_DJ-401-2014-2015'),
+--('A001/DJ_401'),
+--('A001/DJ_402\\44'),
+--('A001/DJ_402\\44\\2015'),
+--('A001/DJ-402%45\\2015/200'),
+--('A001/DJ_402\\45\\2015%100'),
+--('A001/DJ_402%45\\2015/300'),
+--('A001/DJ-402\\44');
+
+select * from testtable 
+where col1 like '%/_%' escape '/'
+
+-- 13. Rows Without Underscore Character
+select * from testtable 
+where col1 not like '%/_%' escape '/'
+
+-- 14. Rows with Forward Slash Character
+select * from testtable 
+where col1 like '%1/%' escape '1'
+
+-- 15. Rows Without Forward Slash Character
+select * from testtable 
+where col1 not like '%1/%' escape '1'
+
+-- 16. Rows with '_/' String
+select * from testtable 
+where col1 like '%1_1/%' escape '1'
+
+-- 17. Rows Without '_/' String
+select * from testtable 
+where col1 not like '%1_1/%' escape '1'
+
+-- 18. Rows with Percent Character
+select * from testtable 
+where col1 like '%1%%' escape '1'
+
+--19. Rows Without Percent Character
+select * from testtable 
+where col1 not like '%1%%' escape '1'
+
+--20. Customers Without Grade
+select customer_id, cust_name, city, grade, salesman_id from customer
+where grade is null;
+
+-- 21. Customers With Grade
+select customer_id, cust_name, city, grade, salesman_id from customer
+where grade is not null;
+
+--22. Employees with Last Name Starting 'D'
+select emp_idno, emp_fname, emp_lname, emp_dept from emp_details
+where emp_lname like 'D%'
+
+-- completed :)
