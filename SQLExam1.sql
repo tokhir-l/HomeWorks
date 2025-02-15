@@ -80,29 +80,29 @@ WHEN FINDING THE TOTAL SALES CONSIDER PRICE NOT THE COST.
  ----------------------------------------------------------------------------------------------
 */
 
-CREATE TABLE [dbo].[OnlineSales](
-	[ProductID] int,
-	[Name] varchar(100),
-	[Cost] float,
-	[Price] float,
-	[Quantity] int
-) 
+--CREATE TABLE [dbo].[OnlineSales](
+--	[ProductID] int,
+--	[Name] varchar(100),
+--	[Cost] float,
+--	[Price] float,
+--	[Quantity] int
+--) 
 
-CREATE TABLE [dbo].[DealerSales](
-	[ProductID] int,
-	[Name] varchar(100),
-	[Cost] float,
-	[Price] float,
-	[Quantity] int
-) 
+--CREATE TABLE [dbo].[DealerSales](
+--	[ProductID] int,
+--	[Name] varchar(100),
+--	[Cost] float,
+--	[Price] float,
+--	[Quantity] int
+--) 
 
-INSERT [dbo].[OnlineSales] ([ProductID], [Name], [Cost], [Price], [Quantity]) VALUES
-(101,'Toyota Camry',20000,30000,20),(102,'Toyota Corolla',15000,23000,23),
-(103,'Toyota RAV4',25000,36000,13),(104,'Toyota GR86',27000,33000,10)
+--INSERT [dbo].[OnlineSales] ([ProductID], [Name], [Cost], [Price], [Quantity]) VALUES
+--(101,'Toyota Camry',20000,30000,20),(102,'Toyota Corolla',15000,23000,23),
+--(103,'Toyota RAV4',25000,36000,13),(104,'Toyota GR86',27000,33000,10)
 
-INSERT [dbo].[DealerSales] ([ProductID], [Name], [Cost], [Price], [Quantity]) VALUES
-(101,'Toyota Camry',20000,30000,17),(102,'Toyota Corolla',15000,23000,31),
-(105,'Toyota Highlander',30000,42000,14),(106,'Toyota Crown',22000,32000,7)
+--INSERT [dbo].[DealerSales] ([ProductID], [Name], [Cost], [Price], [Quantity]) VALUES
+--(101,'Toyota Camry',20000,30000,17),(102,'Toyota Corolla',15000,23000,31),
+--(105,'Toyota Highlander',30000,42000,14),(106,'Toyota Crown',22000,32000,7)
 
 ---SOLUTION:
 select coalesce(o.ProductID,d.ProductID) ProductID, coalesce(o.name, d.name) Name, 
@@ -123,16 +123,16 @@ THEIR MANAGER'S NAME, IF THERE IS NO MANAGER FOR
 A GIVEN EMPLOYEE THEN SHOW "No Manager".
 */
 
-CREATE TABLE Employee (
-	[ID] int,
-	[Name] varchar(50),
-	[ManagerID] int
-)
+--CREATE TABLE Employee (
+--	[ID] int,
+--	[Name] varchar(50),
+--	[ManagerID] int
+--)
 
-insert into Employee([ID], [Name], [ManagerID]) values 
-(1,'Great Boss',null),(2,'First Deputy of Boss',1),
-(3,'Second Deputy of Boss',1),(4,'First Deputy Assistant',2),
-(5,'Second Deputy Assistant',3),(6,'First Deputy Assistant shadow',4)
+--insert into Employee([ID], [Name], [ManagerID]) values 
+--(1,'Great Boss',null),(2,'First Deputy of Boss',1),
+--(3,'Second Deputy of Boss',1),(4,'First Deputy Assistant',2),
+--(5,'Second Deputy Assistant',3),(6,'First Deputy Assistant shadow',4)
 
 --SOLUTION:
 	select  e.Name, COALESCE(m.Name, 'No Manager') Manager_Name
