@@ -44,3 +44,21 @@ join salesman s on s.salesman_id=c.salesman_id
 select c.cust_name customerName, c.city customerCity, s.name salesmanName, s.city salesmanCity from customer c
 join salesman s on c.salesman_id=s.salesman_id
 order by c.customer_id asc
+
+--9
+select c.cust_name customerName, c.city customerCity, c.grade customerGrade, s.name salesmanName, s.city salesmanCity from customer c
+left join salesman s on c.salesman_id=s.salesman_id
+where c.grade<300 
+order by c.customer_id asc
+
+--10
+select c.cust_name, c.city, o.ord_no, o.ord_date, o.purch_amt from customer c
+left outer join orders o on c.customer_id=o.customer_id
+order by o.ord_date asc
+
+--11
+select c.cust_name customerName, c.city customerCity, o.ord_date, o.purch_amt, s.name salesmanName, s.commission from customer c
+left outer join orders o on o.customer_id=c.customer_id
+left outer join salesman s on o.salesman_id=s.salesman_id
+
+--12
